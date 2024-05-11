@@ -28,7 +28,7 @@ public class AddToCartAndCheckOutTest extends TestBase {
         driver = initializeBrowserAndOpenApplication(prop.getProperty("browser"));
     }
 
-    @Test
+    @Test(priority = 1)
     public void verifyAddValidProductToCartAndCheckOutWithRegisterAccount() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -51,7 +51,7 @@ public class AddToCartAndCheckOutTest extends TestBase {
         orderPlacedPage.orderPlacedSuccessAlert();
     }
 
-    @Test
+    @Test (priority = 2)
     public void verifyAddValidProductToCartAndCheckOutWithRegisterAccountToDifferentDeliveryAddress() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -75,7 +75,7 @@ public class AddToCartAndCheckOutTest extends TestBase {
         orderPlacedPage.orderPlacedSuccessAlert();
     }
 
-    @Test
+    @Test (priority = 3)
     public void verifyValidGuestCheckOut() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -96,7 +96,7 @@ public class AddToCartAndCheckOutTest extends TestBase {
         orderPlacedPage.orderPlacedSuccessAlert();
     }
 
-    @Test
+    @Test (priority = 4)
     public void verifyValidGuestCheckOutWithDifferentDeliveryAddress() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -120,7 +120,7 @@ public class AddToCartAndCheckOutTest extends TestBase {
         orderPlacedPage.orderPlacedSuccessAlert();
     }
 
-    @Test
+    @Test (priority = 5)
     public void verifyValidCheckoutAsReturningCustomer() throws Exception{
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -138,7 +138,7 @@ public class AddToCartAndCheckOutTest extends TestBase {
         orderPlacedPage.orderPlacedSuccessAlert();
     }
 
-    @Test
+    @Test (priority = 6)
     public void verifyTryCheckoutWithNoLoginDetailsOnCheckoutOptions() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -155,7 +155,7 @@ public class AddToCartAndCheckOutTest extends TestBase {
         Assert.assertTrue(checkOutPage.combiningLoginErrorMessageWithNoDetails().contains(dataProp.getProperty("loginWarningMessage")));
     }
 
-    @Test
+    @Test (priority = 7)
     public void verifyTryCheckoutWithNoDetailsOnAccountDetails() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -182,7 +182,7 @@ public class AddToCartAndCheckOutTest extends TestBase {
         Assert.assertTrue(checkOutPage.retrieveStateWarningMessage().contains(dataProp.getProperty("stateWarning")));
     }
 
-    @Test
+    @Test (priority = 8)
     public void verifyTryCheckoutWithNoDetailsOnDeliveryDetails() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -204,19 +204,9 @@ public class AddToCartAndCheckOutTest extends TestBase {
                 dataProp.getProperty("addressWarning"),
                 dataProp.getProperty("cityWarning"), dataProp.getProperty("postCodeWarning"),
                 dataProp.getProperty("stateWarning"));
-//        Assert.assertTrue(checkOutPage.retrievePrivacyPolicyWarningMessage().contains(dataProp.getProperty("privacyPolicyWarning")));
-//        Assert.assertTrue(checkOutPage.retrieveFirstNameWarningMessage().contains(dataProp.getProperty("firstNameWarning")));
-//        Assert.assertTrue(checkOutPage.retrieveLastNameWarningMessage().contains(dataProp.getProperty("lastNameWarning")));
-//        Assert.assertFalse(checkOutPage.retrieveEmailWarningMessage().contains(dataProp.getProperty("invalidEmailWarning")));
-//        Assert.assertTrue(checkOutPage.retrieveTelephoneWarningMessage().contains(dataProp.getProperty("telephoneWarning")));
-//        Assert.assertTrue(checkOutPage.retrievePasswordWarningMessage().contains(dataProp.getProperty("passwordWarning")));
-//        Assert.assertTrue(checkOutPage.retrieveAddress1WarningMessage().contains(dataProp.getProperty("addressWarning")));
-//        Assert.assertTrue(checkOutPage.retrieveCityWarningMessage().contains(dataProp.getProperty("cityWarning")));
-//        Assert.assertTrue(checkOutPage.retrievePostCodeWarningMessage().contains(dataProp.getProperty("postCodeWarning")));
-//        Assert.assertTrue(checkOutPage.retrieveStateWarningMessage().contains(dataProp.getProperty("stateWarning")));
-    }
+   }
 
-    @Test
+    @Test(priority = 9)
     public void retrieveErrorMessageOnPaymentMethodAtTermsAndConditions() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));

@@ -30,18 +30,10 @@ public class LoginTest extends TestBase {
         driver = initializeBrowserAndOpenApplication(prop.getProperty("browser"));
         homepage = new HomePage(driver);
         loginPage = homepage.combiningTwoActionsToNavigateToLoginPage();
-//        homepage.clickOnMyAccount();
-//        loginPage = homepage.selectLoginOption();
-
-
     }
 
     @Test(priority = 1, dataProvider = "TNLogin", dataProviderClass = ExcelCode.class)
     public void loginWithValidCredentials(String email, String password) {
-
-//        loginPage.enterEmail(email);
-//        loginPage.enterPassword(password);
-//        loginPage.clickOnLoginButton();
         accountPage = loginPage.navigateToLoginPageByCombining3Actions(email, password);
         accountPage.validateDisplayStatusOfLogoutLink();
     }
@@ -49,13 +41,7 @@ public class LoginTest extends TestBase {
     @Test(priority = 2)
     public void loginWithValidEmailInvalidPassword() {
 
-//        loginPage.enterEmail(prop.getProperty("validEmail"));
-//        loginPage.enterPassword(dataProp.getProperty("invalidPassword"));
-//        loginPage.clickOnLoginButton();
         loginPage.navigateToLoginPageByCombining3Actions(prop.getProperty("validEmail"), dataProp.getProperty("invalidPassword"));
-//        String actualWarningMessage = loginPage.retrieveLoginMessageWarningText();
-//        String expectedWarningMessage = dataProp.getProperty("loginWarningMessage");
-//        Assert.assertTrue(actualWarningMessage.contains(expectedWarningMessage));
         Assert.assertTrue(loginPage.retrieveLoginMessageWarningText().contains(dataProp.getProperty("loginWarningMessage")));
     }
 
@@ -64,12 +50,6 @@ public class LoginTest extends TestBase {
 
         loginPage.navigateToLoginPageByCombining3Actions(Util.emailWithDateTimeStamp(), prop.getProperty("validPassword"));
         Assert.assertTrue(loginPage.retrieveLoginMessageWarningText().contains(dataProp.getProperty("loginWarningMessage")));
-//        loginPage.enterEmail(Util.emailWithDateTimeStamp());
-//        loginPage.enterPassword(prop.getProperty("validPassword"));
-//        loginPage.clickOnLoginButton();
-//        String actualWarningMessage = loginPage.retrieveLoginMessageWarningText();
-//        String expectedWarningMessage = dataProp.getProperty("loginWarningMessage");
-//        Assert.assertTrue(actualWarningMessage.contains(expectedWarningMessage));
     }
 
     @Test(priority = 4)
@@ -77,12 +57,6 @@ public class LoginTest extends TestBase {
 
         loginPage.navigateToLoginPageByCombining3Actions(Util.emailWithDateTimeStamp(), dataProp.getProperty("invalidPassword"));
         Assert.assertTrue(loginPage.retrieveLoginMessageWarningText().contains(dataProp.getProperty("loginWarningMessage")));
-//        loginPage.enterEmail(Util.emailWithDateTimeStamp());
-//        loginPage.enterPassword(dataProp.getProperty("invalidPassword"));
-//        loginPage.clickOnLoginButton();
-//        String actualWarningMessage = loginPage.retrieveLoginMessageWarningText();
-//        String expectedWarningMessage = dataProp.getProperty("loginWarningMessage");
-//        Assert.assertTrue(actualWarningMessage.contains(expectedWarningMessage));
     }
 
     @Test(priority = 5)
@@ -90,10 +64,6 @@ public class LoginTest extends TestBase {
 
         loginPage.navigateToLoginPageByCombining3Actions(Util.emailWithDateTimeStamp(), dataProp.getProperty("invalidPassword"));
         Assert.assertTrue(loginPage.retrieveLoginMessageWarningText().contains(dataProp.getProperty("loginWarningMessage")));
-//        loginPage.clickOnLoginButton();
-//        String actualWarningMessage = loginPage.retrieveLoginMessageWarningText();
-//        String expectedWarningMessage = dataProp.getProperty("loginWarningMessage");
-//        Assert.assertTrue(actualWarningMessage.contains(expectedWarningMessage));
     }
 
     @AfterMethod

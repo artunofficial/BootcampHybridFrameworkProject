@@ -31,48 +31,29 @@ public class SearchProductTest extends TestBase {
     public void verifySearchValidProduct() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
-        //        homePage.enterProductName(dataProp.getProperty("validProduct"));
-        //        homePage.clickOnSearchButton();
-//    driver.findElement(By.cssSelector("div#search>input")).sendKeys(dataProp.getProperty("validProduct"));
         Thread.sleep(3000);
-//    driver.findElement(By.cssSelector("button.btn.btn-default.btn-lg>i")).click();
-
         Assert.assertTrue(productPage.verifyValidProductPresence());
-//        Assert.assertTrue(driver.findElement(By.linkText("HP LP3065")).isDisplayed());
     }
 
     @Test(priority = 2)
     public void verifySearchInvalidProduct() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("invalidProduct"));
-        //        homePage.enterProductName(dataProp.getProperty("invalidProduct"));
-        //        homePage.clickOnSearchButton();
-//        driver.findElement(By.cssSelector("div#search>input")).sendKeys(dataProp.getProperty("invalidProduct"));
-        Thread.sleep(3000);
-//        driver.findElement(By.cssSelector("button.btn.btn-default.btn-lg>i")).click();
+       Thread.sleep(3000);
         Assert.assertFalse(productPage.verifyInvalidProductWarningMessageDisplay());
-//        Assert.assertTrue(driver.findElement(By.xpath("//p[text() = 'There is no product that matches the search criteria.']")).isDisplayed());
-
     }
 
     @Test(priority = 3)
     public void verifySearchNoProduct() {
         homePage = new HomePage(driver);
         productPage = homePage.clickOnSearchButton();
-//        HomePage homePage = new HomePage(driver);
-//        homePage.clickOnSearchButton();
-//        ProductPage productPage = new ProductPage(driver);
         Assert.assertTrue(productPage.verifyInvalidProductWarningMessageDisplay());
-//        driver.findElement(By.cssSelector("button.btn.btn-default.btn-lg>i")).click();
-//        Assert.assertTrue(driver.findElement(By.xpath("//p[text() = 'There is no product that matches the search criteria.']")).isDisplayed());
-
     }
 
 
 
     @AfterMethod
     public void tearDown() {
-
         driver.quit();
     }
 
