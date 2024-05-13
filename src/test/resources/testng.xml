@@ -5,9 +5,27 @@
     <listeners>
         <listener class-name="com.tutorialsNinja.Listeners.MyListeners">
 
-        </listener>
-
     </listeners>
+
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/artun/IdeaProjects/Hybrid_Framework/src/test/com/tutorialsNinja/TestCases/AddToCartAndCheckOutTest.java">
+        <classes>
+            <class name="com.tutorialsNinja.TestCases.AddToCartAndCheckOutTest">
+                <methods>
+                    <include name="verifyAddValidProductToCartAndCheckOutWithRegisterAccount"/>
+                    <include
+                            name="verifyAddValidProductToCartAndCheckOutWithRegisterAccountToDifferentDeliveryAddress"/>
+                    <include name="verifyValidGuestCheckOut"/>
+                    <include name="verifyValidGuestCheckOutWithDifferentDeliveryAddress"/>
+                    <include name="verifyValidCheckoutAsReturningCustomer"/>
+                    <include name="verifyTryCheckoutWithNoLoginDetailsOnCheckoutOptions"/>
+                    <include name="verifyTryCheckoutWithNoDetailsOnAccountDetails"/>
+                    <include name="verifyTryCheckoutWithNoDetailsOnDeliveryDetails"/>
+                    <include name="retrieveErrorMessageOnPaymentMethodAtTermsAndConditions"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
     <test verbose="2" preserve-order="true"
           name="C:/Users/artun/IdeaProjects/Hybrid_Framework/src/test/com/tutorialsNinja/TestCases/LoginTest.java">
         <classes>
