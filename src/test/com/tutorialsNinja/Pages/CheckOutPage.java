@@ -188,7 +188,7 @@ public class CheckOutPage {
     @FindBy(css = "input#input-shipping-postcode+div")
     private WebElement postCodeDeliveryDetailsWarningMessage;
 
-    @FindBy(xpath = "//p[text() = 'Please select the preferred payment method to use on this order.']")
+    @FindBy(xpath = "//div[text() = 'Warning: You must agree to the Terms & Conditions!']")
     private WebElement termsAndConditionsPaymentMethodWarningMessage;
 
     public CheckOutPage(WebDriver driver) {

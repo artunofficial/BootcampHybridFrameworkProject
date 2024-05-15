@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="Suite">
 
     <listeners>
-        <listener class-name="com.tutorialsNinja.Listeners.MyListeners">
+        <listener class-name="com.tutorialsNinja.Listeners.MyListeners"></listener>
 
     </listeners>
 
-    <test verbose="2" preserve-order="true"
-          name="C:/Users/artun/IdeaProjects/Hybrid_Framework/src/test/com/tutorialsNinja/TestCases/AddToCartAndCheckOutTest.java">
+    <test name="C:/Users/artun/IdeaProjects/Hybrid_Framework/src/test/com/tutorialsNinja/TestCases/LoginTest.java">
+        <classes>
+            <class name="com.tutorialsNinja.TestCases.LoginTest">
+                <methods>
+                    <include name="loginWithValidCredentials"/>
+                    <include name="loginWithValidEmailInvalidPassword"/>
+                    <include name="loginWithInvalidEmailValidPassword"/>
+                    <include name="loginWithInvalidCredentials"/>
+                    <include name="loginWithNoCredentials"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="C:/Users/artun/IdeaProjects/Hybrid_Framework/src/test/com/tutorialsNinja/TestCases/RegisterTest.java">
+        <classes>
+            <class name="com.tutorialsNinja.TestCases.RegisterTest">
+                <methods>
+                    <include name="verifyRegisterWithMandatoryDetails"/>
+                    <include name="verifyRegisterWithAllDetails"/>
+                    <include name="verifyRegisterWithExistingEmail"/>
+                    <include name="verifyRegisterWithWrongConfirmPassword"/>
+                    <include name="verifyRegisterWithNoDetails"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="C:/Users/artun/IdeaProjects/Hybrid_Framework/src/test/com/tutorialsNinja/TestCases/SearchProductTest.java">
+        <classes>
+            <class name="com.tutorialsNinja.TestCases.SearchProductTest">
+                <methods>
+                    <include name="verifySearchValidProduct"/>
+                    <include name="verifySearchInvalidProduct"/>
+                    <include name="verifySearchNoProduct"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="C:/Users/artun/IdeaProjects/Hybrid_Framework/src/test/com/tutorialsNinja/TestCases/AddToCartAndCheckOutTest.java">
         <classes>
             <class name="com.tutorialsNinja.TestCases.AddToCartAndCheckOutTest">
                 <methods>
@@ -22,46 +58,6 @@
                     <include name="verifyTryCheckoutWithNoDetailsOnAccountDetails"/>
                     <include name="verifyTryCheckoutWithNoDetailsOnDeliveryDetails"/>
                     <include name="retrieveErrorMessageOnPaymentMethodAtTermsAndConditions"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test verbose="2" preserve-order="true"
-          name="C:/Users/artun/IdeaProjects/Hybrid_Framework/src/test/com/tutorialsNinja/TestCases/LoginTest.java">
-        <classes>
-            <class name="com.tutorialsNinja.TestCases.LoginTest">
-                <methods>
-                    <include name="loginWithValidCredentials"/>
-                    <include name="loginWithValidEmailInvalidPassword"/>
-                    <include name="loginWithInvalidEmailValidPassword"/>
-                    <include name="loginWithInvalidCredentials"/>
-                    <include name="loginWithNoCredentials"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test verbose="2" preserve-order="true"
-          name="C:/Users/artun/IdeaProjects/Hybrid_Framework/src/test/com/tutorialsNinja/TestCases/RegisterTest.java">
-        <classes>
-            <class name="com.tutorialsNinja.TestCases.RegisterTest">
-                <methods>
-                    <include name="verifyRegisterWithMandatoryDetails"/>
-                    <include name="verifyRegisterWithAllDetails"/>
-                    <include name="verifyRegisterWithExistingEmail"/>
-                    <include name="verifyRegisterWithWrongConfirmPassword"/>
-                    <include name="verifyRegisterWithNoDetails"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test verbose="2" preserve-order="true"
-          name="C:/Users/artun/IdeaProjects/Hybrid_Framework/src/test/com/tutorialsNinja/TestCases/SearchProductTest.java">
-        <classes>
-            <class name="com.tutorialsNinja.TestCases.SearchProductTest">
-                <methods>
-                    <include name="verifySearchValidProduct"/>
-                    <include name="verifySearchInvalidProduct"/>
-                    <include name="verifySearchNoProduct"/>
                 </methods>
             </class>
         </classes>

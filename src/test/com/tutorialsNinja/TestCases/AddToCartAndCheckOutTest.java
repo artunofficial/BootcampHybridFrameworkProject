@@ -5,8 +5,8 @@ import com.tutorialsNinja.Pages.*;
 import com.tutorialsNinja.TestBase.TestBase;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class AddToCartAndCheckOutTest extends TestBase {
@@ -23,12 +23,12 @@ public class AddToCartAndCheckOutTest extends TestBase {
     public OrderPlacedPage orderPlacedPage;
 
 
-    @BeforeTest
+    @BeforeMethod
     public void addToCartSetup() {
         driver = initializeBrowserAndOpenApplication(prop.getProperty("browser"));
     }
 
-    @Test(priority = 1)
+    @Test
     public void verifyAddValidProductToCartAndCheckOutWithRegisterAccount() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -48,10 +48,11 @@ public class AddToCartAndCheckOutTest extends TestBase {
                 prop.getProperty("validPassword"), prop.getProperty("validPassword"),
                 dataProp.getProperty("address1"), dataProp.getProperty("city"));
         orderPlacedPage = new OrderPlacedPage(driver);
-        orderPlacedPage.orderPlacedSuccessAlert();
+        Assert.assertTrue(orderPlacedPage.orderPlacedSuccessAlert().contains(dataProp.getProperty("orderPlacedMessage")));
+        Thread.sleep(3000);
     }
 
-    @Test (priority = 2)
+    @Test
     public void verifyAddValidProductToCartAndCheckOutWithRegisterAccountToDifferentDeliveryAddress() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -72,10 +73,11 @@ public class AddToCartAndCheckOutTest extends TestBase {
                 dataProp.getProperty("newShippingLastName"), dataProp.getProperty("newShippingAddress1"),
                 dataProp.getProperty("newShippingCity"));
         orderPlacedPage = new OrderPlacedPage(driver);
-        orderPlacedPage.orderPlacedSuccessAlert();
+        Assert.assertTrue(orderPlacedPage.orderPlacedSuccessAlert().contains(dataProp.getProperty("orderPlacedMessage")));
+        Thread.sleep(3000);
     }
 
-    @Test (priority = 3)
+    @Test
     public void verifyValidGuestCheckOut() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -93,10 +95,11 @@ public class AddToCartAndCheckOutTest extends TestBase {
                 Util.emailWithDateTimeStamp(), dataProp.getProperty("newBillingPhoneNumber"), dataProp.getProperty("newBillingAddress1"),
                 dataProp.getProperty("newBillingCity"), dataProp.getProperty("newBillingZipcode"));
         orderPlacedPage = new OrderPlacedPage(driver);
-        orderPlacedPage.orderPlacedSuccessAlert();
+        Assert.assertTrue(orderPlacedPage.orderPlacedSuccessAlert().contains(dataProp.getProperty("orderPlacedMessage")));
+
     }
 
-    @Test (priority = 4)
+    @Test
     public void verifyValidGuestCheckOutWithDifferentDeliveryAddress() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -117,10 +120,10 @@ public class AddToCartAndCheckOutTest extends TestBase {
                 dataProp.getProperty("newBillingLastName"), dataProp.getProperty("newBillingAddress1"),
                 dataProp.getProperty("newBillingCity"));
         orderPlacedPage = new OrderPlacedPage(driver);
-        orderPlacedPage.orderPlacedSuccessAlert();
+        Assert.assertTrue(orderPlacedPage.orderPlacedSuccessAlert().contains(dataProp.getProperty("orderPlacedMessage")));
     }
 
-    @Test (priority = 5)
+    @Test
     public void verifyValidCheckoutAsReturningCustomer() throws Exception{
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -135,10 +138,10 @@ public class AddToCartAndCheckOutTest extends TestBase {
         checkOutPage = new CheckOutPage(driver);
         checkOutPage.combiningReturningCustomerCheckout(prop.getProperty("validEmail"), prop.getProperty("validPassword"));
         orderPlacedPage = new OrderPlacedPage(driver);
-        orderPlacedPage.orderPlacedSuccessAlert();
+        Assert.assertTrue(orderPlacedPage.orderPlacedSuccessAlert().contains(dataProp.getProperty("orderPlacedMessage")));
     }
 
-    @Test (priority = 6)
+    @Test
     public void verifyTryCheckoutWithNoLoginDetailsOnCheckoutOptions() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -155,7 +158,7 @@ public class AddToCartAndCheckOutTest extends TestBase {
         Assert.assertTrue(checkOutPage.combiningLoginErrorMessageWithNoDetails().contains(dataProp.getProperty("loginWarningMessage")));
     }
 
-    @Test (priority = 7)
+    @Test
     public void verifyTryCheckoutWithNoDetailsOnAccountDetails() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -182,7 +185,7 @@ public class AddToCartAndCheckOutTest extends TestBase {
         Assert.assertTrue(checkOutPage.retrieveStateWarningMessage().contains(dataProp.getProperty("stateWarning")));
     }
 
-    @Test (priority = 8)
+    @Test
     public void verifyTryCheckoutWithNoDetailsOnDeliveryDetails() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -206,7 +209,7 @@ public class AddToCartAndCheckOutTest extends TestBase {
                 dataProp.getProperty("stateWarning"));
    }
 
-    @Test(priority = 9)
+    @Test
     public void retrieveErrorMessageOnPaymentMethodAtTermsAndConditions() throws Exception {
         homePage = new HomePage(driver);
         productPage = homePage.navigateToProductPage(dataProp.getProperty("validProduct"));
@@ -219,20 +222,22 @@ public class AddToCartAndCheckOutTest extends TestBase {
         addToCartPage.clickOnCheckout();
         Thread.sleep(2000);
         checkOutPage = new CheckOutPage(driver);
+        checkOutPage.clickOnRegisterAccountAndContinueOption();
         checkOutPage.retrievingWarningMessageOnPaymentMethod(
                 dataProp.getProperty("firstName"), dataProp.getProperty("lastName"), Util.emailWithDateTimeStamp(),
                 dataProp.getProperty("telephone"), prop.getProperty("validPassword"), prop.getProperty("validPassword"),
                 dataProp.getProperty("address1"), dataProp.getProperty("city"), dataProp.getProperty("newShippingFirstName"),
                 dataProp.getProperty("newShippingLastName"), dataProp.getProperty("newShippingAddress1"),
                 dataProp.getProperty("newShippingCity"));
-        Assert.assertTrue(checkOutPage.errorMessageTermsAndConditionsOnPaymentMethod().contains(dataProp.getProperty("invalidEmailAddressWarning")));
+        Assert.assertTrue(checkOutPage.errorMessageTermsAndConditionsOnPaymentMethod().contains(dataProp.getProperty("termsAndConditionsWarning")));
 
     }
 
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         driver.quit();
+
     }
 
 }
